@@ -57,4 +57,4 @@ print("Prediction Time:", round(time()-t1, 3), "s")
 acc=clf.score(features_test,labels_test)
 print(acc)
 import numpy as np
-print(np.count(pred=1))
+print(np.sum(pred==1))
