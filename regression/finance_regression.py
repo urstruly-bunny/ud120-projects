@@ -23,6 +23,8 @@ dictionary = joblib.load( open("/workspaces/ud120-projects/final_project/final_p
 ### list the features you want to look at--first item in the 
 ### list will be the "target" feature
 features_list = ["bonus", "salary"]
+#features_list = ["bonus", "long_term_incentive"]
+
 data = featureFormat( dictionary, features_list, remove_any_zeroes=True, sort_keys = '/workspaces/ud120-projects/tools/python2_lesson06_keys.pkl')
 target, features = targetFeatureSplit( data )
 
@@ -41,8 +43,14 @@ test_color = "r"
 from sklearn.linear_model import LinearRegression
 reg= LinearRegression()
 reg.fit(feature_train,target_train)
+print(reg.coef_)
+print(reg.intercept_)
+print(reg.score(feature_test, target_test))
 
 
+reg.fit(feature_test, target_test)
+#plt.plot(feature_train, reg.predict(feature_train), color="b")
+print(reg.coef_)
 
 
 import matplotlib
@@ -75,6 +83,9 @@ try:
     
 except NameError:
     pass
+reg.fit(feature_test, target_test)
+#plt.plot(feature_train, reg.predict(feature_train), color="b")
+print(reg.score(feature_test,target_test))
 plt.xlabel(features_list[1])
 plt.ylabel(features_list[0])
 plt.legend()
