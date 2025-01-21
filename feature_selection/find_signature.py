@@ -27,6 +27,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 vectorizer = TfidfVectorizer(sublinear_tf=True, max_df=0.5, stop_words='english')
 features_train = vectorizer.fit_transform(features_train)
 features_test  = vectorizer.transform(features_test).toarray()
+vectorizer.get_feature_names()
 
 
 ### a classic way to overfit is to use a small number
@@ -42,4 +43,14 @@ labels_train   = labels_train[:150]
 clf=tree.DecisionTreeClassifier()
 clf.fit(features_train,labels_train)
 print(clf.score(features_test,labels_test))
+a=[]
+c=0
+for x in clf.feature_importances_:
+    
+    if x>=0.2:
+        a.append(x)
+        get_feature_names(x)
+        c=c+1
 
+
+print(a,c)
